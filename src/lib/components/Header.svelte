@@ -77,7 +77,6 @@
                 <a href="/" class="text-base sm:text-lg font-semibold text-gray-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200">
                     {config.title}
                 </a>
-                <div class="emoji text-2xl sm:text-3xl" aria-hidden="true">⚙️</div>
                 <span class="tooltip">Home</span>
             </div>
 
@@ -87,19 +86,19 @@
                     <a href="/about" class="text-sm sm:text-base text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 uppercase tracking-wider font-medium border-b-2 border-transparent hover:border-blue-600 dark:hover:border-blue-400 pb-1">
                         About
                     </a>
-                    <span class="tooltip">About</span>
+                    <span class="tooltip">Projects</span>
                 </li>
                 <li class="group relative px-2 py-1 nav-item">
                     <a href="/contact" class="text-sm sm:text-base text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 uppercase tracking-wider font-medium border-b-2 border-transparent hover:border-blue-600 dark:hover:border-blue-400 pb-1">
                         Contact
                     </a>
-                    <span class="tooltip">Contact</span>
+                    <span class="tooltip">Blogs</span>
                 </li>
                 <li class="group relative px-2 py-1 nav-item">
                     <a href="/rss.xml" target="_blank" class="text-sm sm:text-base text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 uppercase tracking-wider font-medium border-b-2 border-transparent hover:border-blue-600 dark:hover:border-blue-400 pb-1">
                         RSS
                     </a>
-                    <span class="tooltip">Feed</span>
+                    <span class="tooltip">About</span>
                 </li>
             </ul>
 
