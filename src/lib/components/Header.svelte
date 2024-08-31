@@ -1,8 +1,6 @@
 <script lang="ts">
     import { onMount } from 'svelte';
     import * as config from "$lib/config";
-    import dark from "../../../static/assets/dark.png";
-    import light from "../../../static/assets/light.png";
     import { browser } from '$app/environment';
 
     let isDarkMode = false;
@@ -24,16 +22,13 @@
 
             gsap.registerPlugin(ScrollTrigger);
 
-            // Emoji rolling animation controlled by scroll
-            gsap.to(".emoji", {
-                rotation: 360,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: "body",
-                    start: "top top",
-                    end: "bottom bottom",
-                    scrub: 1
-                }
+            // Floating animation for header
+            gsap.to("header", {
+                y: 7,
+                duration: 3,
+                repeat: -1,
+                yoyo: true,
+                ease: "power1.inOut"
             });
 
             // Scrolling animation for nav items
@@ -52,95 +47,101 @@
                 });
             });
 
-            // Header shrink effect on scroll
-            gsap.to("header", {
-                scrollTrigger: {
-                    trigger: "body",
-                    start: "top top",
-                    end: "+=200",
-                    scrub: true
-                },
-                height: "3.5rem",
-                padding: "0.5rem 0",
-                ease: "power2.out"
+            // RGB animation for title, dividers, and nav items
+            gsap.to([".title", ".divider", ".nav-item a"], {
+                color: "rgb(255,100,100)",
+                duration: 2,
+                repeat: -1,
+                yoyo: true,
+                ease: "power1.inOut",
+            });
+
+            gsap.to([".title", ".divider", ".nav-item a"], {
+                color: "rgb(100,255,100)",
+                duration: 2,
+                delay: 1,
+                repeat: -1,
+                yoyo: true,
+                ease: "power1.inOut",
+            });
+
+            gsap.to([".title", ".divider", ".nav-item a"], {
+                color: "rgb(100,100,255)",
+                duration: 2,
+                delay: 2,
+                repeat: -1,
+                yoyo: true,
+                ease: "power1.inOut",
             });
         }
     });
 </script>
 
 <header class="fixed top-4 left-0 right-0 z-50 transition-all duration-300">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <nav class="flex items-center justify-between bg-white dark:bg-gray-800 shadow-lg rounded-full py-3 px-5 sm:px-8">
-            <!-- Title and Emoji Container -->
-            <div class="title-container flex items-center space-x-3 text-base font-mono flex-shrink-0 group relative">
-                <div class="emoji text-2xl sm:text-3xl" aria-hidden="true">⚙️</div>
-                <a href="/" class="text-base sm:text-lg font-semibold text-gray-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200">
-                    {config.title}
-                </a>
-                <span class="tooltip">Home</span>
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav class="flex items-center justify-between bg-white dark:bg-gray-800 shadow-lg rounded-full py-2 px-4 sm:px-6">
+            <!-- Centered title with dividers -->
+            <div class="flex items-center space-x-2 sm:space-x-4">
+                <svg class="w-8 sm:w-10 h-4" viewBox="0 0 100 2" preserveAspectRatio="none">
+                    <line x1="0" y1="1" x2="100" y2="1" stroke="currentColor" stroke-width="0.5" class="divider" vector-effect="non-scaling-stroke" />
+                </svg>
+                <h1 class="title vt323-regular text-lg sm:text-xl md:text-2xl whitespace-nowrap"><a href="/">The Handy Codex</a></h1>
+                <svg class="w-12 sm:w-24 h-4" viewBox="0 0 100 2" preserveAspectRatio="none">
+                    <line x1="0" y1="1" x2="100" y2="1" stroke="currentColor" stroke-width="0.5" class="divider" vector-effect="non-scaling-stroke" />
+                </svg>
             </div>
 
             <!-- Nav for larger screens -->
-            <ul class="hidden sm:flex items-center space-x-2 sm:space-x-4 font-mono">
-                <li class="group relative px-2 py-1 nav-item">
-                    <a href="/about" class="text-sm sm:text-base text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 uppercase tracking-wider font-medium border-b-2 border-transparent hover:border-blue-600 dark:hover:border-blue-400 pb-1">
+            <ul class="hidden lg:flex items-center space-x-4 vt323-regular mr-12">
+                <li class="nav-item">
+                    <a href="/about" class="text-xs sm:text-2xl hover:text-gray-500 dark:hover:text-gray-400 hover:underline transition-all duration-200">
+                        Projects
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/contact" class="text-xs sm:text-2xl hover:text-gray-500 dark:hover:text-gray-400 hover:underline transition-all duration-200">
                         About
                     </a>
-                    <span class="tooltip">Projects</span>
                 </li>
-                <li class="group relative px-2 py-1 nav-item">
-                    <a href="/contact" class="text-sm sm:text-base text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 uppercase tracking-wider font-medium border-b-2 border-transparent hover:border-blue-600 dark:hover:border-blue-400 pb-1">
-                        Contact
+                <li class="nav-item">
+                    <a href="/rss.xml" target="_blank" class="text-xs sm:text-2xl hover:text-gray-500 dark:hover:text-gray-400 hover:underline transition-all duration-200">
+                        Blog
                     </a>
-                    <span class="tooltip">Blogs</span>
-                </li>
-                <li class="group relative px-2 py-1 nav-item">
-                    <a href="/rss.xml" target="_blank" class="text-sm sm:text-base text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 uppercase tracking-wider font-medium border-b-2 border-transparent hover:border-blue-600 dark:hover:border-blue-400 pb-1">
-                        RSS
-                    </a>
-                    <span class="tooltip">About</span>
                 </li>
             </ul>
 
-            <!-- Burger menu for smaller screens -->
-            <button
-                on:click={toggleMenu}
-                class="sm:hidden p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none"
-                aria-label="Toggle menu"
-            >
-                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </button>
-
-            <!-- Theme Toggle -->
-            <div class="relative group flex-shrink-0 ml-2 sm:ml-4">
+            <div class="flex items-center space-x-2">
+                <button
+                    on:click={toggleMenu}
+                    class="lg:hidden p-1.5 rounded-md text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none"
+                    aria-label="Toggle menu"
+                >
+                    <svg class="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
                 <button
                     on:click={toggleDarkMode}
-                    class="p-2 sm:p-2.5 rounded-full transition-all duration-300 focus:outline-none hover:scale-110 bg-gray-100 dark:bg-gray-700"
+                    class="p-1.5 rounded-full transition-all duration-300 focus:outline-none bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600"
                     aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
                 >
                     {#if isDarkMode}
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6 text-yellow-400 hover:text-yellow-300 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
                         </svg>
                     {:else}
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6 text-gray-600 hover:text-gray-800 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                         </svg>
                     {/if}
                 </button>
-                <span class="tooltip">
-                    {isDarkMode ? 'Dark mode' : 'Light mode'}
-                </span>
             </div>
         </nav>
     </div>
 </header>
-
-<!-- Mobile menu (unchanged) -->
+<!-- Mobile menu -->
 {#if isMenuOpen}
-<div class="fixed inset-0 z-50 bg-white dark:bg-gray-800 sm:hidden">
+<div class="fixed inset-0 z-50 bg-white dark:bg-gray-800 lg:hidden">
     <div class="p-4 flex flex-col items-center justify-center h-full">
         <button
             on:click={toggleMenu}
@@ -153,17 +154,17 @@
         </button>
         <ul class="space-y-4 text-center">
             <li>
-                <a href="/about" class="text-lg text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200">
+                <a href="/about" class="vt323-regular text-lg text-gray-600 dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-400 hover:underline transition-all duration-200">
                     About
                 </a>
             </li>
             <li>
-                <a href="/contact" class="text-lg text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200">
+                <a href="/contact" class="vt323-regular text-lg text-gray-600 dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-400 hover:underline transition-all duration-200">
                     Contact
                 </a>
             </li>
             <li>
-                <a href="/rss.xml" target="_blank" class="text-lg text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200">
+                <a href="/rss.xml" target="_blank" class="vt323-regular text-lg text-gray-600 dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-400 hover:underline transition-all duration-200">
                     RSS
                 </a>
             </li>
@@ -173,25 +174,14 @@
 {/if}
 
 <style>
-    .emoji {
-        color: rgba(0, 0, 0, 0.7);
+    @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+    .vt323-regular {
+        font-family: "VT323", monospace;
+        font-weight: 400;
+        font-style: normal;
     }
-    .tooltip {
-        position: absolute;
-        display: none;
-        background-color: #1f2937;
-        color: white;
-        font-size: 0.75rem;
-        padding: 0.25rem 0.5rem;
-        border-radius: 0.375rem;
-        bottom: -2rem;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 10;
-    }
-    .group:hover .tooltip {
-        display: block;
-    }
+
     :global(body) {
         padding-top: 5rem;
     }

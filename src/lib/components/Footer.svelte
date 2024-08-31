@@ -6,7 +6,7 @@
   <div class="max-w-6xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
     <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
       <!-- Logo and tagline -->
-      <div class="flex flex-col items-center md:items-start font-mono">
+      <div class="flex flex-col items-center md:items-start vt323-regular">
         <div class="text-xl font-semibold text-gray-800 dark:text-white">
           The Handy Codex
         </div>
@@ -25,7 +25,7 @@
       </div>
 
       <!-- Social icons (GitHub and LinkedIn) -->
-      <div class="flex space-x-4 font-mono">
+      <div class="flex space-x-4 vt323-regular">
         <a 
           href="https://www.linkedin.com/in/ahmadjehad2000/" 
           target="_blank" 
@@ -52,7 +52,7 @@
     </div>
 
     <!-- Copyright -->
-    <div class="font-mono mt-6 border-t border-gray-200 dark:border-gray-700 pt-4 text-center text-sm text-gray-500 dark:text-gray-400">
+    <div class="vt323-regular mt-6 border-t border-gray-200 dark:border-gray-700 pt-4 text-center text-sm text-gray-500 dark:text-gray-400">
       © {currentYear} By Ahmad Jehad. All rights reserved.
     </div>
   </div>

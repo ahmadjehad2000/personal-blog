@@ -27,9 +27,9 @@
 	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
 </script>
 
-<div class="layout flex flex-col min-h-screen">
+<div class="layout flex flex-col min-h-screen vt323-regular">
 	<Header/>
-	<main class="flex-grow">
+	<main class="flex-grow vt323-regular">
 		<slot/>
 	</main>
 	<Footer/>
